@@ -27,5 +27,18 @@ window.addEventListener('load', () => {
         const busqueda = evento.target.value;
         grid.filter((item) => item.getElement().dataset.etiquetas.includes(busqueda));
     });
+
+    // Agregamos listener para las imagenes
+    const overlay = document.getElementById('overlay');
+    document.querySelectorAll('.grid .item img').forEach((elemento) => {
+        const ruta = elemento.getAttribute('src');
+        const descripcion = elemento.parentNode.parentNode.dataset.descripcion;
+
+        elemento.addEventListener('click', () => {
+        overlay.classList.add('activo');
+        document.querySelector('#overlay img').src = ruta;
+        document.querySelector('#overlay .descripcion').innerHTML = descripcion;
+        });
+    });
 });
 
